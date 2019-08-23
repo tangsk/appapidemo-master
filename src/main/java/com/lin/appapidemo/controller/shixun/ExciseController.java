@@ -62,7 +62,7 @@ public class ExciseController {
     @RequestMapping(value = "/register",method = RequestMethod.POST)
     public Map<String,Object> register(@RequestParam("account")String account,@RequestParam("name")String name,@RequestParam("password")String password){
         Map<String,Object> map=new HashMap<>();
-        if((readerMapper.selectWholeByAccount(account)!=null){
+        if(readerMapper.selectWholeByAccount(account)!=null){
             map.put("status","no");
         }else{
             readerMapper.insert(new Reader(account,name,password,DateTimeUtil.getDate()));
