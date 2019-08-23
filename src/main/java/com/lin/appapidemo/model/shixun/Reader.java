@@ -25,7 +25,6 @@ public class Reader {
     private String password;
     @Column(name = "name")
     private String name;
-
     @Column(name = "time")
     private String time;
     @Column(name = "condi")
