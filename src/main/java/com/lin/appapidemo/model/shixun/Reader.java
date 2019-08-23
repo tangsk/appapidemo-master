@@ -39,12 +39,14 @@ public class Reader {
 
     
 
-    public Reader(String account, String password, String name, String time, int condi) {
+    public Reader(String account, String password, String name, String time, int condi,String feedback,String EMailAddr,String phoneNumber) {
         this.account = account;
         this.password = password;
         this.name = name;
         this.time = time;
         this.condi = condi;
-
+        this.feedback = feedback;
+        this.EMailAddr = EMailAddr;
+        this.phoneNumber = phoneNumber;
     }
 }
