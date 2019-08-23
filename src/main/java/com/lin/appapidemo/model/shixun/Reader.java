@@ -25,26 +25,26 @@ public class Reader {
     private String password;
     @Column(name = "name")
     private String name;
-    @Column(name = "sex")
-    private String sex;
-    @Column(name = "phoneNumber")
-    private String phoneNumber;
-    @Column(name = "EMailAddr")
-    private String EMailAddr;
-    @Column(name = "feedback")
-    private String feedback;
+
     @Column(name = "time")
     private String time;
     @Column(name = "condi")
     private int condi;
+    @Column(name = "feedback")
+    private String feedback;
+    @Column(name = "EMailAddr")
+    private String EMailAddr;
+    @Column(name = "phoneNumber")
+    private String phoneNumber;
+
     
 
-    public Reader(String account, String password, String name, String sex, String time, int condi) {
+    public Reader(String account, String password, String name, String time, int condi) {
         this.account = account;
         this.password = password;
         this.name = name;
-        this.sex = sex;
         this.time = time;
         this.condi = condi;
+
     }
 }
