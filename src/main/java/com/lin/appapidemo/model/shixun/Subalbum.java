@@ -34,4 +34,36 @@ public class Subalbum {
         this.condi = condi;
         this.time = time;
     }
+
+    public int getAid(){
+        return aid;
+    }
+
+    public void setAid(int aid){
+        this.aid=aid;
+    }
+
+    public String getNumber(){
+        return number;
+    }
+
+    public void setNumber(String number){
+        this.number=number;
+    }
+
+    public int getCondi(){
+        return condi;
+    }
+
+    public void setCondi(int condi){
+        this.condi=condi;
+    }
+
+    public String getTime(){
+        return time;
+    }
+
+    public void setTime(String time){
+        this.time=time;
+    }
 }
