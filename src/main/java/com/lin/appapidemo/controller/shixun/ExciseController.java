@@ -60,18 +60,18 @@ public class ExciseController {
     
     //注册
     @RequestMapping(value = "/register",method = RequestMethod.POST)
-    public Map<String,Object> register(@RequestParam("account")String account,@RequestParam("name")String name,@RequestParam("password")String password){
+    public Map<String,Object> register(@RequestParam("account")String account,@RequestParam("name")String name,@RequestParam("password")String password,@RequestParam("condi")int condi){
         Map<String,Object> map=new HashMap<>();
         if(readerMapper.selectWholeByAccount(account)!=null){
             map.put("status","no");
         }else{
-            readerMapper.insert(new Reader(account,name,password,DateTimeUtil.getDate()));
+            readerMapper.insert(new Reader(account,account,name, DateTimeUtil.getDate(),condi));
             map.put("status","ok");
         }
         return map;
     }
     
-    //普通用户改变个人信息电话号码
+    //普通用户改变个人信息电话号码,不必要
     @RequestMapping(value = "/changePhoneNumber",method = RequestMethod.POST)
     public Map<String,Object> changePhoneNumber(@RequestParam("account")String account,@RequestParam("phoneNumber")String phoneNumber){
         Map<String,Object> map=new HashMap<>();
@@ -82,7 +82,7 @@ public class ExciseController {
         return map;
     }
     
-    //普通用户改变个人信息电子邮箱
+    //普通用户改变个人信息电子邮箱,不必要
     @RequestMapping(value = "/changeEMailAddr",method = RequestMethod.POST)
     public Map<String,Object> changeEMailAddr(@RequestParam("account")String account,@RequestParam("EMailAddr")String EMailAddr){
         Map<String,Object> map=new HashMap<>();
@@ -93,7 +93,7 @@ public class ExciseController {
         return map;
     }
     
-    //普通用户改变个人信息密码
+    //普通用户改变个人信息密码,不必要
     @RequestMapping(value = "/changePassword",method = RequestMethod.POST)
     public Map<String,Object> changePasswordr(@RequestParam("account")String account,@RequestParam("password")String password){
         Map<String,Object> map=new HashMap<>();
@@ -108,31 +108,12 @@ public class ExciseController {
     @RequestMapping(value = "/addAlbum",method = RequestMethod.POST)
     public Map<String,Object> addAlbum(@RequestParam("aid")String aid,@RequestParam("title")String title,@RequestParam("author")String author,@RequestParam("publisher")String publisher,@RequestParam("publishtime")String publishtime,@RequestParam("descri")String descri){
         Map<String,Object> map=new HashMap<>();
-        albumMapper.insert(new Album(aid,title,author,publisher,publishtime,0,descri,DateTimeUtil.getDate()));
+        albumMapper.insert(new Album(title,author,publisher,publishtime,0,descri,DateTimeUtil.getDate()));
         map.put("status","ok");
         return map;
     }
     
-    //管理员删除书籍
-    @RequestMapping(value = "/deleteAlbum",method = RequestMethod.POST)
-    public Map<String,Object> deleteAlbum(@RequestParam("aid")String aid){
-        Map<String,Object> map=new HashMap<>();
-        borrowrecordMapper.delete(AlbumMapper.selectByPrimaryKey(aid));
-        map.put("status","ok");
-        return map;
-    }
-  
-   //管理员根据用户学号获取用户信息
-    @RequestMapping(value = "/getAllReaders",method = RequestMethod.POST)
-    public Map<String,Object> getAllReaders(@RequestParam("account")String account,@RequestParam("currentPage")int currentPage){
-        Map<String,Object> map=new HashMap<>();
-        PageHelper.startPage(currentPage,10);
-        List<Reader> list=readerMapper.selectByAccount(account);
-        PageInfo<Reader> pageInfo=new PageInfo<>(list);
-        map.put("readers",list);
-        map.put("pageInfo",pageInfo);
-        return map;
-    }
+
 
     //用户根据书名查找书籍
     @RequestMapping(value = "/getAllAlbums",method = RequestMethod.POST)
@@ -158,48 +139,12 @@ public class ExciseController {
         return map;
     }
 
-    //管理员获取所有用户的个人信息
-    @RequestMapping(value = "/getPersonlMess",method = RequestMethod.POST)
-    public Map<String,Object> getPersonlMess(@RequestParam("currentPage")int currentPage){
-        Map<String,Object> map=new HashMap<>();
-        PageHelper.startPage(currentPage,10);
-        List<Reader> list=readerMapper.selectAllInfoByRaccount();//有点不确定   需要全部搜索到，这个地方不知道怎么正确写
-        PageInfo<Reader> pageInfo=new PageInfo<>(list);
-        map.put("pageInfo",pageInfo);
-        map.put("reader",list);
-        return map;
-    }
 
-    //管理员获取所有有留言的用户的留言信息
-    @RequestMapping(value = "/getfeedback",method = RequestMethod.POST)
-    public Map<String,Object> getfeedback(@RequestParam("currentPage")int currentPage){
-        Map<String,Object> map=new HashMap<>();
-        PageHelper.startPage(currentPage,10);
-        List<Reader> list=readerMapper.selectAllInfoByFeedback();//有点不确定   需要全部搜索到，这个地方不知道怎么正确写
-        PageInfo<Reader> pageInfo=new PageInfo<>(list);
-        map.put("pageInfo",pageInfo);
-        map.put("reader",list);
-        return map;
-    }
-
-    /*
-    @RequestMapping(value = "/addReader",method = RequestMethod.POST)
-    public Map<String,Object> addReader(@RequestParam("account")String account,@RequestParam("name")String name,@RequestParam("sex")String sex,@RequestParam("condi")int condi){
-        Map<String,Object> map=new HashMap<>();
-        if(readerMapper.selectWholeByAccount(account)!=null){
-            map.put("status","no");
-        }else{
-            readerMapper.insert(new Reader(account,account,name,sex, DateTimeUtil.getDate(),condi));
-            map.put("status","ok");
-        }
-        return map;
-    }
-    */
      
   
     
     @RequestMapping(value = "/addSubAlbum",method = RequestMethod.POST)
-    public Map<String,Object> addSubAlbum(@RequestParam("bookID")int bookID,@RequestParam("number")String number){
+    public Map<String,Object> addSubAlbum(@RequestParam("bookID")int aid,@RequestParam("number")String number){
         Map<String,Object> map=new HashMap<>();
         if(subalbumMapper.selectByNumber(number)!=null){
             map.put("status","no");
@@ -243,7 +188,7 @@ public class ExciseController {
     }
     
     @RequestMapping(value = "/reback",method = RequestMethod.POST)
-    public Map<String,Object> reback(@RequestParam("borrowID")int borrowID,@RequestParam("sid")int sid){
+    public Map<String,Object> reback(@RequestParam("borrowID")int bid,@RequestParam("sid")int sid){
         Map<String,Object> map=new HashMap<>();
         if(bid!=0&&sid!=0){
             borrowrecordMapper.delete(borrowrecordMapper.selectByPrimaryKey(bid));
