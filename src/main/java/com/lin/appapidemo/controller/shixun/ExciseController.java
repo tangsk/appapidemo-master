@@ -174,16 +174,7 @@ public class ExciseController {
         return map;
     }
 
-    //普通用户改变个人信息密码,不必要
-    @RequestMapping(value = "/changePassword",method = RequestMethod.POST)
-    public Map<String,Object> changePasswordr(@RequestParam("account")String account,@RequestParam("password")String password){
-        Map<String,Object> map=new HashMap<>();
-        Reader reader=readerMapper.selectByAccount(account);
-        reader.setPassword(password);
-        readerMapper.updateByPrimaryKey(reader);
-        map.put("status","ok");
-        return map;
-    }
+ 
 
 
   /*
