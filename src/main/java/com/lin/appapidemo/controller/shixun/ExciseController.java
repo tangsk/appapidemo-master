@@ -71,38 +71,9 @@ public class ExciseController {
         return map;
     }
     
-    //普通用户改变个人信息电话号码,不必要
-    @RequestMapping(value = "/changePhoneNumber",method = RequestMethod.POST)
-    public Map<String,Object> changePhoneNumber(@RequestParam("account")String account,@RequestParam("phoneNumber")String phoneNumber){
-        Map<String,Object> map=new HashMap<>();
-        Reader reader=readerMapper.selectByAccount(account);
-        reader.setPhoneNumber(phoneNumber);
-        readerMapper.updateByPrimaryKey(reader);
-        map.put("status","ok");
-        return map;
-    }
+
     
-    //普通用户改变个人信息电子邮箱,不必要
-    @RequestMapping(value = "/changeEMailAddr",method = RequestMethod.POST)
-    public Map<String,Object> changeEMailAddr(@RequestParam("account")String account,@RequestParam("EMailAddr")String EMailAddr){
-        Map<String,Object> map=new HashMap<>();
-        Reader reader=readerMapper.selectByAccount(account);
-        reader.setEMailAddr(EMailAddr);
-        readerMapper.updateByPrimaryKey(reader);
-        map.put("status","ok");
-        return map;
-    }
-    
-    //普通用户改变个人信息密码,不必要
-    @RequestMapping(value = "/changePassword",method = RequestMethod.POST)
-    public Map<String,Object> changePasswordr(@RequestParam("account")String account,@RequestParam("password")String password){
-        Map<String,Object> map=new HashMap<>();
-        Reader reader=readerMapper.selectByAccount(account);
-        reader.setPassword(password);
-        readerMapper.updateByPrimaryKey(reader);
-        map.put("status","ok");
-        return map;
-    }
+
      
     //管理员添加书籍
     @RequestMapping(value = "/addAlbum",method = RequestMethod.POST)
