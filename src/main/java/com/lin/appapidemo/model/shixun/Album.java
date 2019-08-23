@@ -44,4 +44,60 @@ public class Album {
         this.descri = descri;
         this.time = time;
     }
+
+    public String getTitle(){
+        return title;
+    }
+
+    public void setTitle(String title){
+        this.title=title;
+    }
+
+    public String getAuthor(){
+        return author;
+    }
+
+    public void setAuthor(String author){
+        this.author=author;
+    }
+
+    public String getPublisher(){
+        return publisher;
+    }
+
+    public void setPublisher(String publisher){
+        this.publisher=publisher;
+    }
+
+    public String getPublishtime(){
+        return publishtime;
+    }
+
+    public void setPublishtime(String publishtime){
+        this.publishtime=publishtime;
+    }
+
+    public int getNum(){
+        return num;
+    }
+
+    public void setNum(int num){
+        this.num=num;
+    }
+
+    public String getDescri(){
+        return descri;
+    }
+
+    public void setDescri(String descri){
+        this.descri=descri;
+    }
+
+    public String getTime(){
+        return time;
+    }
+
+    public void setTime(String time){
+        this.time=time;
+    }
 }
