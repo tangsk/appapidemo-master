@@ -47,4 +47,61 @@ public class Borrowrecord {
         this.backtime = backtime;
         this.inttime = inttime;
     }
+
+
+    public int getRid(){
+        return rid;
+    }
+
+    public void setRid(int rid){
+        this.rid=rid;
+    }
+
+    public String getRaccount(){
+        return raccount;
+    }
+
+    public void setRaccount(String raccount){
+        this.raccount=raccount;
+    }
+
+    public int getAid(){
+        return aid;
+    }
+
+    public void setAid(int aid){
+        this.aid=aid;
+    }
+
+    public int getSid(){
+        return sid;
+    }
+
+    public void setSid(int sid){
+        this.sid=sid;
+    }
+
+    public String getTime(){
+        return time;
+    }
+
+    public void setTime(String time){
+        this.time=time;
+    }
+
+    public String getBacktime(){
+        return backtime;
+    }
+
+    public void setBacktime(String backtime){
+        this.backtime=backtime;
+    }
+
+    public String getInttime(){
+        return inttime;
+    }
+
+    public void setInttime(String inttime){
+        this.inttime=inttime;
+    }
 }
