@@ -77,7 +77,7 @@ public class ExciseController {
         if(readerMapper.selectWholeByAccount(account)!=null){
             map.put("status","no");
         }else{
-            readerMapper.insert(new Reader(account,password,name,sex, DateTimeUtil.getDate(),condi));
+            readerMapper.insert(new Reader(account,account,name,sex, DateTimeUtil.getDate(),condi));
             map.put("status","ok");
         }
         return map;
