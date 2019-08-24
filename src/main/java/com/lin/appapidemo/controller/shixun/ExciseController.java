@@ -195,7 +195,7 @@ public class ExciseController {
 @RequestMapping(value = "/deleteAlbum",method = RequestMethod.POST)
     public Map<String,Object> deleteAlbum(@RequestParam("aid")String aid){
         Map<String,Object> map=new HashMap<>();
-        albumMapper.deleteByPrimaryKey(aid)
+        albumMapper.deleteByPrimaryKey(aid);
         map.put("status","ok");
         return map;
    }
