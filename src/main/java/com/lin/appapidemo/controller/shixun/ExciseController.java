@@ -60,19 +60,28 @@ public class ExciseController {
     
     //注册
     @RequestMapping(value = "/register",method = RequestMethod.POST)
-    public Map<String,Object> register(@RequestParam("account")String account,@RequestParam("name")String name,@RequestParam("password")String password,@RequestParam("condi")int condi,@RequestParam("feedback")String feedback,@RequestParam("EMailAddr")String EMailAddr,@RequestParam("phoneNumber")String phoneNumber){
+    public Map<String,Object> register(@RequestParam("account")String account,@RequestParam("name")String name,@RequestParam("sex")String sex,@RequestParam("password")String password,@RequestParam("condi")int condi,@RequestParam("feedback")String feedback,@RequestParam("EMailAddr")String EMailAddr,@RequestParam("phoneNumber")String phoneNumber){
         Map<String,Object> map=new HashMap<>();
         if(readerMapper.selectWholeByAccount(account)!=null){
             map.put("status","no");
         }else{
-            readerMapper.insert(new Reader(account,account,name, DateTimeUtil.getDate(),condi,feedback,EMailAddr,phoneNumber));
+            readerMapper.insert(new Reader(account,account,name, sex,DateTimeUtil.getDate(),condi,feedback,EMailAddr,phoneNumber));
             map.put("status","ok");
         }
         return map;
     }
-    
 
-    
+    @RequestMapping(value = "/addReader",method = RequestMethod.POST)
+    public Map<String,Object> addReader(@RequestParam("account")String account,@RequestParam("name")String name,@RequestParam("sex")String sex,@RequestParam("password")String password,@RequestParam("condi")int condi,@RequestParam("feedback")String feedback,@RequestParam("EMailAddr")String EMailAddr,@RequestParam("phoneNumber")String phoneNumber){
+        Map<String,Object> map=new HashMap<>();
+        if(readerMapper.selectWholeByAccount(account)!=null){
+            map.put("status","no");
+        }else{
+            readerMapper.insert(new Reader(account,account,name,sex, DateTimeUtil.getDate(),condi,feedback,EMailAddr,phoneNumber));
+            map.put("status","ok");
+        }
+        return map;
+    }
 
      
     //管理员添加书籍
@@ -173,7 +182,6 @@ public class ExciseController {
 
         return map;
     }
-
 
 
 
