@@ -25,6 +25,8 @@ public class Reader {
     private String password;
     @Column(name = "name")
     private String name;
+    @Column(name = "sex")
+    private String sex;
     @Column(name = "time")
     private String time;
     @Column(name = "condi")
@@ -38,10 +40,11 @@ public class Reader {
 
 
 
-    public Reader(String account, String password, String name, String time, int condi,String feedback,String EMailAddr,String phoneNumber) {
+    public Reader(String account, String password, String name, String sex,String time, int condi,String feedback,String EMailAddr,String phoneNumber) {
         this.account = account;
         this.password = password;
         this.name = name;
+        this.sex = sex;
         this.time = time;
         this.condi = condi;
         this.feedback = feedback;
