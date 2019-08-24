@@ -193,20 +193,6 @@ public class ExciseController {
         return map;
     }
 
-
-    //管理员获取某用户信息
-    @RequestMapping(value = "/getPersonalMsg",method = RequestMethod.POST)
-    public Map<String,Object> getPersonalMsg(@RequestParam("account")String account)
-    {
-        Map<String,Object> map = new HashMap<>();
-        PageHelper.startPage(currentPage,10);
-        List<Reader> list = readerMapper.selectByAccount(account);
-        PageInfo<Reader> pageInfo = new PageInfo<>(list);
-        map.put("pageInfo",pageInfo);
-        map.put("readers",list);
-        return map;
-    }
-
   /*
     @RequestMapping(value = "/reback",method = RequestMethod.POST)
     public Map<String,Object> reback(@RequestParam("bid")int bid,@RequestParam("sid")int sid){
