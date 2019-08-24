@@ -83,6 +83,16 @@ public class ExciseController {
         return map;
     }
 
+    @RequestMapping(value = "/getAllReaders",method = RequestMethod.POST)
+    public Map<String,Object> getAllReaders(@RequestParam("account")String account,@RequestParam("currentPage")int currentPage){
+        Map<String,Object> map=new HashMap<>();
+        PageHelper.startPage(currentPage,10);
+        List<Reader> list=readerMapper.selectByAccount(account);
+        PageInfo<Reader> pageInfo=new PageInfo<>(list);
+        map.put("readers",list);
+        map.put("pageInfo",pageInfo);
+        return map;
+    }
      
     //管理员添加书籍
     @RequestMapping(value = "/addAlbum",method = RequestMethod.POST)
