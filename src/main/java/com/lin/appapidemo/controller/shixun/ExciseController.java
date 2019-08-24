@@ -60,12 +60,12 @@ public class ExciseController {
     
     //注册
     @RequestMapping(value = "/register",method = RequestMethod.POST)
-    public Map<String,Object> register(@RequestParam("account")String account,@RequestParam("password")String password,@RequestParam("name")String name,@RequestParam("sex")String sex,@RequestParam("condi")int condi,@RequestParam("feedback")String feedback,@RequestParam("EMailAddr")String EMailAddr,@RequestParam("phoneNumber")String phoneNumber){
+    public Map<String,Object> register(@RequestParam("name")String name,@RequestParam("account")String account,@RequestParam("password")String password){
         Map<String,Object> map=new HashMap<>();
         if(readerMapper.selectWholeByAccount(account)!=null){
             map.put("status","no");
         }else{
-            readerMapper.insert(new Reader(account,password,name, sex,DateTimeUtil.getDate(),condi,feedback,EMailAddr,phoneNumber));
+            readerMapper.insert(new Reader(name,account,password,0));
             map.put("status","ok");
         }
         return map;
@@ -142,7 +142,7 @@ public class ExciseController {
             Album album=albumMapper.selectById(aid);
             album.setNum(album.getNum()+1);
             albumMapper.updateByPrimaryKey(album);
-            subalbumMapper.insert(new Subalbum(aid,number,1,DateTimeUtil.getDate()));
+            subalbumMapper.insert(new Subalbum(aid,number,3,DateTimeUtil.getDate()));
             map.put("status","ok");
         }
         return map;
@@ -192,6 +192,7 @@ public class ExciseController {
 
         return map;
     }
+
 
 
   /*
