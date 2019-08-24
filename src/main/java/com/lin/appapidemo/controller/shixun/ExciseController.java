@@ -183,7 +183,27 @@ public class ExciseController {
         return map;
     }
 
+    //管理员删除书籍
+    @RequestMapping(value = "/deleteAlbum",method = RequestMethod.POST)
+    public Map<String,Object> deleteAlbum(@RequestParam("aid")String aid){
+        Map<String,Object> map=new HashMap<>();
+        albumMapper.delete(AlbumMapper.selectByPrimaryKey(aid));
+        map.put("status","ok");
+        return map;
 
+
+//管理员获取某用户信息
+        @RequestMapping(value = "/getPersonalMsg",method = RequestMethod.POST)
+        public Map<String,Object> getPersonalMsg(@RequestParam("account")String account)
+        {
+            Map<String,Object> map = new HashMap<>();
+            PageHelper.startPage(currentPage,10);
+            List<Reader> list = readerMapper.selectByAccount(account);
+            PageInfo<Reader> pageInfo = new PageInfo<>(list);
+            map.put("pageInfo",pageInfo);
+            map.put("readers",list);
+            return map;
+        }
 
   /*
     @RequestMapping(value = "/reback",method = RequestMethod.POST)
