@@ -51,6 +51,16 @@ public class Reader {
         this.EMailAddr = EMailAddr;
         this.phoneNumber = phoneNumber;
     }
+    public Reader(String account, String password, String name, String sex, String time, int condi) {
+        this.account = account;
+        this.password = password;
+        this.name = name;
+        this.sex = sex;
+        this.time = time;
+        this.condi = condi;
+    }
+
+
 
     public String getAccount(){
         return account;
