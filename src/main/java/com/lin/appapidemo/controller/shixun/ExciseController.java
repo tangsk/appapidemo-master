@@ -72,12 +72,12 @@ public class ExciseController {
     }
 
     @RequestMapping(value = "/addReader",method = RequestMethod.POST)
-    public Map<String,Object> addReader(@RequestParam("account")String account,@RequestParam("password")String password,@RequestParam("name")String name,@RequestParam("sex")String sex,@RequestParam("condi")int condi){
+    public Map<String,Object> addReader(@RequestParam("account")String account,@RequestParam("name")String name,@RequestParam("sex")String sex,@RequestParam("condi")int condi){
         Map<String,Object> map=new HashMap<>();
         if(readerMapper.selectWholeByAccount(account)!=null){
             map.put("status","no");
         }else{
-            readerMapper.insert(new Reader(account,password,name,sex, DateTimeUtil.getDate(),condi));
+            readerMapper.insert(new Reader(account,account,name,sex, DateTimeUtil.getDate(),condi));
             map.put("status","ok");
         }
         return map;
