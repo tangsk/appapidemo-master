@@ -59,6 +59,13 @@ public class Reader {
         this.time = time;
         this.condi = condi;
     }
+    public Reader(String account, String password, String name,int condi) {
+        this.account = account;
+        this.password = password;
+        this.name = name;
+        this.condi = condi;
+    }
+
 
 
 
