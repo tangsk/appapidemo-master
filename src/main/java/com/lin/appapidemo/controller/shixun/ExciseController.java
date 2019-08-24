@@ -77,7 +77,7 @@ public class ExciseController {
      
     //管理员添加书籍
     @RequestMapping(value = "/addAlbum",method = RequestMethod.POST)
-    public Map<String,Object> addAlbum(@RequestParam("aid")String aid,@RequestParam("title")String title,@RequestParam("author")String author,@RequestParam("publisher")String publisher,@RequestParam("publishtime")String publishtime,@RequestParam("descri")String descri){
+    public Map<String,Object> addAlbum(@RequestParam("title")String title,@RequestParam("author")String author,@RequestParam("publisher")String publisher,@RequestParam("publishtime")String publishtime,@RequestParam("descri")String descri){
         Map<String,Object> map=new HashMap<>();
         albumMapper.insert(new Album(title,author,publisher,publishtime,0,descri,DateTimeUtil.getDate()));
         map.put("status","ok");
