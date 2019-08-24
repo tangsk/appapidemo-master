@@ -59,10 +59,10 @@ public class Reader {
         this.time = time;
         this.condi = condi;
     }
-    public Reader(String account, String password, String name,int condi) {
+    public Reader(String name,String account, String password, int condi) {
+        this.name = name;
         this.account = account;
         this.password = password;
-        this.name = name;
         this.condi = condi;
     }
 
