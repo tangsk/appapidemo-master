@@ -192,14 +192,20 @@ public class ExciseController {
 
         return map;
     }
-@RequestMapping(value = "/deleteAlbum",method = RequestMethod.POST)
+    @RequestMapping(value = "/deleteAlbum",method = RequestMethod.POST)
     public Map<String,Object> deleteAlbum(@RequestParam("aid")String aid){
         Map<String,Object> map=new HashMap<>();
         albumMapper.deleteByPrimaryKey(aid);
         map.put("status","ok");
         return map;
    }
-
+    @RequestMapping(value = "/deleteReader",method = RequestMethod.POST)
+    public Map<String,Object> deleteReader(@RequestParam("account")String account){
+        Map<String,Object> map=new HashMap<>();
+        albumMapper.deleteByPrimaryKey(account);
+        map.put("status","ok");
+        return map;
+    }
 
   /*
     @RequestMapping(value = "/reback",method = RequestMethod.POST)
