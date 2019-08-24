@@ -60,24 +60,24 @@ public class ExciseController {
     
     //注册
     @RequestMapping(value = "/register",method = RequestMethod.POST)
-    public Map<String,Object> register(@RequestParam("account")String account,@RequestParam("name")String name,@RequestParam("sex")String sex,@RequestParam("password")String password,@RequestParam("condi")int condi,@RequestParam("feedback")String feedback,@RequestParam("EMailAddr")String EMailAddr,@RequestParam("phoneNumber")String phoneNumber){
+    public Map<String,Object> register(@RequestParam("account")String account,@RequestParam("password")String password,@RequestParam("name")String name,@RequestParam("sex")String sex,@RequestParam("condi")int condi,@RequestParam("feedback")String feedback,@RequestParam("EMailAddr")String EMailAddr,@RequestParam("phoneNumber")String phoneNumber){
         Map<String,Object> map=new HashMap<>();
         if(readerMapper.selectWholeByAccount(account)!=null){
             map.put("status","no");
         }else{
-            readerMapper.insert(new Reader(account,account,name, sex,DateTimeUtil.getDate(),condi,feedback,EMailAddr,phoneNumber));
+            readerMapper.insert(new Reader(account,password,name, sex,DateTimeUtil.getDate(),condi,feedback,EMailAddr,phoneNumber));
             map.put("status","ok");
         }
         return map;
     }
 
     @RequestMapping(value = "/addReader",method = RequestMethod.POST)
-    public Map<String,Object> addReader(@RequestParam("account")String account,@RequestParam("name")String name,@RequestParam("sex")String sex,@RequestParam("password")String password,@RequestParam("condi")int condi,@RequestParam("feedback")String feedback,@RequestParam("EMailAddr")String EMailAddr,@RequestParam("phoneNumber")String phoneNumber){
+    public Map<String,Object> addReader(@RequestParam("account")String account,@RequestParam("password")String password,@RequestParam("name")String name,@RequestParam("sex")String sex,@RequestParam("condi")int condi){
         Map<String,Object> map=new HashMap<>();
         if(readerMapper.selectWholeByAccount(account)!=null){
             map.put("status","no");
         }else{
-            readerMapper.insert(new Reader(account,account,name,sex, DateTimeUtil.getDate(),condi,feedback,EMailAddr,phoneNumber));
+            readerMapper.insert(new Reader(account,password,name,sex, DateTimeUtil.getDate(),condi));
             map.put("status","ok");
         }
         return map;
@@ -183,27 +183,7 @@ public class ExciseController {
         return map;
     }
 
-    //管理员删除书籍
-    @RequestMapping(value = "/deleteAlbum",method = RequestMethod.POST)
-    public Map<String,Object> deleteAlbum(@RequestParam("aid")String aid){
-        Map<String,Object> map=new HashMap<>();
-        albumMapper.delete(AlbumMapper.selectByPrimaryKey(aid));
-        map.put("status","ok");
-        return map;
 
-
-//管理员获取某用户信息
-        @RequestMapping(value = "/getPersonalMsg",method = RequestMethod.POST)
-        public Map<String,Object> getPersonalMsg(@RequestParam("account")String account)
-        {
-            Map<String,Object> map = new HashMap<>();
-            PageHelper.startPage(currentPage,10);
-            List<Reader> list = readerMapper.selectByAccount(account);
-            PageInfo<Reader> pageInfo = new PageInfo<>(list);
-            map.put("pageInfo",pageInfo);
-            map.put("readers",list);
-            return map;
-        }
 
   /*
     @RequestMapping(value = "/reback",method = RequestMethod.POST)
