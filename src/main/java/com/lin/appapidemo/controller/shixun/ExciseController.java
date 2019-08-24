@@ -58,26 +58,26 @@ public class ExciseController {
         return map;
     }
     
-  //注册
+    //注册
     @RequestMapping(value = "/register",method = RequestMethod.POST)
-    public Map<String,Object> register(@RequestParam("account")String account,@RequestParam("password")String password,@RequestParam("name")String name,@RequestParam("condi")int condi){
+    public Map<String,Object> register(@RequestParam("name")String name,@RequestParam("account")String account,@RequestParam("password")String password,@RequestParam("condi")int condi){
         Map<String,Object> map=new HashMap<>();
         if(readerMapper.selectWholeByAccount(account)!=null){
             map.put("status","no");
         }else{
-            readerMapper.insert(new Reader(account,password,name,0));
+            readerMapper.insert(new Reader(name,account,password,0));
             map.put("status","ok");
         }
         return map;
     }
 
     @RequestMapping(value = "/addReader",method = RequestMethod.POST)
-    public Map<String,Object> addReader(@RequestParam("account")String account,@RequestParam("name")String name,@RequestParam("sex")String sex,@RequestParam("condi")int condi){
+    public Map<String,Object> addReader(@RequestParam("account")String account,@RequestParam("password")String password,@RequestParam("name")String name,@RequestParam("sex")String sex,@RequestParam("condi")int condi){
         Map<String,Object> map=new HashMap<>();
         if(readerMapper.selectWholeByAccount(account)!=null){
             map.put("status","no");
         }else{
-            readerMapper.insert(new Reader(account,account,name,sex, DateTimeUtil.getDate(),condi));
+            readerMapper.insert(new Reader(account,password,name,sex, DateTimeUtil.getDate(),condi));
             map.put("status","ok");
         }
         return map;
@@ -147,8 +147,8 @@ public class ExciseController {
         }
         return map;
     }
-    
-    
+
+
     @RequestMapping(value = "/borrow",method = RequestMethod.POST)
     public Map<String,Object> borrow(@RequestParam("aid")int aid,@RequestParam("rid")int rid,@RequestParam("raccount")String raccount){
         Map<String,Object> map=new HashMap<>();
@@ -192,13 +192,15 @@ public class ExciseController {
 
         return map;
     }
+
     @RequestMapping(value = "/deleteAlbum",method = RequestMethod.POST)
     public Map<String,Object> deleteAlbum(@RequestParam("aid")String aid){
         Map<String,Object> map=new HashMap<>();
         albumMapper.deleteByPrimaryKey(aid);
         map.put("status","ok");
         return map;
-   }
+    }
+
     @RequestMapping(value = "/deleteReader",method = RequestMethod.POST)
     public Map<String,Object> deleteReader(@RequestParam("account")String account){
         Map<String,Object> map=new HashMap<>();
