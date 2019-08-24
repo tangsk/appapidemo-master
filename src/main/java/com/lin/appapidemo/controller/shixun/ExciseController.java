@@ -142,7 +142,7 @@ public class ExciseController {
             Album album=albumMapper.selectById(aid);
             album.setNum(album.getNum()+1);
             albumMapper.updateByPrimaryKey(album);
-            subalbumMapper.insert(new Subalbum(aid,number,0,DateTimeUtil.getDate()));
+            subalbumMapper.insert(new Subalbum(aid,number,1,DateTimeUtil.getDate()));
             map.put("status","ok");
         }
         return map;
