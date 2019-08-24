@@ -192,18 +192,7 @@ public class ExciseController {
 
         return map;
     }
-    //管理员获取留言
-    @RequestMapping(value = "getFeedBack",method = RequestMethod.POST)
-    public Map<String,Object> getFeedBack(@RequestParam("account")String account,@RequestParam("currentPage")int currentPage)
-    {
-        Map<String,Object> map = new HashMap<>();
-        PageHelper.startPage(currentPage,10);
-        List<Reader> list = readerMapper.selectAllInfoByAccount(account);
-        PageInfo<Reader> pageInfo = new PageInfo<>(list);
-        map.put("pageInfo",pageInfo);
-        map.put("reader",list);
-        return map;
-    }
+
 
   /*
     @RequestMapping(value = "/reback",method = RequestMethod.POST)
