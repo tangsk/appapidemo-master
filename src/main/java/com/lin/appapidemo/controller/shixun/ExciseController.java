@@ -58,14 +58,14 @@ public class ExciseController {
         return map;
     }
     
-    //注册
+  //注册
     @RequestMapping(value = "/register",method = RequestMethod.POST)
-    public Map<String,Object> register(@RequestParam("name")String name,@RequestParam("account")String account,@RequestParam("password")String password){
+    public Map<String,Object> register(@RequestParam("account")String account,@RequestParam("password")String password,@RequestParam("name")String name,@RequestParam("condi")int condi){
         Map<String,Object> map=new HashMap<>();
         if(readerMapper.selectWholeByAccount(account)!=null){
             map.put("status","no");
         }else{
-            readerMapper.insert(new Reader(name,account,password,0));
+            readerMapper.insert(new Reader(account,password,name,0));
             map.put("status","ok");
         }
         return map;
