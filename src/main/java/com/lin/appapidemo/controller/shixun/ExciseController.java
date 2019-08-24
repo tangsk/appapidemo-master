@@ -174,14 +174,7 @@ public class ExciseController {
         return map;
     }
 
-   //管理员删除书籍
-    @RequestMapping(value = "/deleteAlbum",method = RequestMethod.POST)
-    public Map<String,Object> deleteAlbum(@RequestParam("aid")String aid){
-        Map<String,Object> map=new HashMap<>();
-        borrowrecordMapper.delete(AlbumMapper.selectByPrimaryKey(aid));
-        map.put("status","ok");
-        return map;
-    }
+
 
 
   /*
